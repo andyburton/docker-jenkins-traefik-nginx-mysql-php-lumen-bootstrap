@@ -2,6 +2,12 @@
 
 Scaffolding project to bootstrap for new PHP / Lumen microservice with MySQL running on Nginx with Traefik, Jenkinsfile for CI and Docker / testing scripts.
 
+# Resources
+
+Docker Compose - https://docs.docker.com/compose/overview/
+Traefik Documentation - https://docs.traefik.io/
+Lumen Documentation - https://lumen.laravel.com/docs/5.7
+
 # Install
 
 - Copy the files from this repository into your new repository and move to that directory.
@@ -67,7 +73,7 @@ As a shortcut a local copy of PHP can be used to run a local webserver, run `php
 
 # Running Multiple Services In Local Dev
 
-To assist with running multiple services in a local development environment the `andyburton/traefik-environment` repository has been configured with Traefik to handle URL routing.
+To assist with running multiple services in a local development environment the https://github.com/andyburton/traefik-environment repository has been configured with Traefik to handle URL routing.
 
 To install this clone the dev-environment, run `docker network create microservices` and then `docker-compose up -d`.
 
