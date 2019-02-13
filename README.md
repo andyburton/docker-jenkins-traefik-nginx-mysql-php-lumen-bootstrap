@@ -9,7 +9,7 @@ Scaffolding project to bootstrap for new PHP / Lumen microservice with MySQL run
 - Copy the `.env.example` file to `.env` and configure for your environment.
 - Configure Docker as per the instructions below.
 - Configure Services required as per the instructions below.
-- Configure the `src/composer.json`, `src/routes/web.php`, `src/bootstrap/app.php` files as required by the application.****
+- Configure the `src/composer.json`, `src/routes/web.php`, `src/bootstrap/app.php` files as required by the application.
 
 # Docker Config
 
@@ -45,7 +45,7 @@ The only thing that should need configuring in the Jenkinsfile are the ECR envir
 
 Run `docker-compose up` from the root directory and this will build the application containers, start the webserver and PHP, install composer and run any migrations.
 
-You can then simply view `http://localhost:8001/api/v1/service_name` in a browser to view.
+You can then simply view `http://localhost:8001/api/v1/service` in a browser to view.
 
 # Running Commands
 

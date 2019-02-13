@@ -21,7 +21,7 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api/v1', 'namespace' => 'Api'], function () use ($router) {
 
-    $router->get('/', function () use ($router) {
+    $router->get('/service', function () use ($router) {
         return response()->json([
             'api_version' => env('API_VERSION'),
             'lumen_version' => $router->app->version()

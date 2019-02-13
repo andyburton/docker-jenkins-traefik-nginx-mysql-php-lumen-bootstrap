@@ -45,7 +45,6 @@ services:
     command: /scripts/init.sh
     depends_on:
       - mysql
-      - elastic
     labels:
       - "traefik.enable=false"
 
