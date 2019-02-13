@@ -4,9 +4,9 @@ Scaffolding project to bootstrap for new PHP / Lumen microservice with MySQL run
 
 # Resources
 
-Docker Compose - https://docs.docker.com/compose/overview/
-Traefik Documentation - https://docs.traefik.io/
-Lumen Documentation - https://lumen.laravel.com/docs/5.7
+- Docker Compose - https://docs.docker.com/compose/overview/
+- Traefik Documentation - https://docs.traefik.io/
+- Lumen Documentation - https://lumen.laravel.com/docs/5.7
 
 # Install
 
