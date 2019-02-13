@@ -1,0 +1,66 @@
+version: '3.3'
+
+networks:
+  default:
+    external:
+      name: microservices
+
+services:
+
+  nginx:
+    container_name: service_nginx
+    build:
+      context: ./
+      dockerfile: docker/nginx/Dockerfile
+    restart: always
+    ports:
+      - "80"
+    volumes:
+      - ./src:/app
+    depends_on:
+      - php
+    labels:
+      - "traefik.frontend.rule=PathPrefix:/api/v1/service"
+
+  php:
+    container_name: service_php
+    build:
+      context: ./
+      dockerfile: docker/php/Dockerfile
+      args:
+        APP_ENV: ${APP_ENV}
+        PHP_XDEBUG_DEFAULT_ENABLE: ${PHP_XDEBUG_DEFAULT_ENABLE}
+        PHP_XDEBUG_REMOTE_ENABLE: ${PHP_XDEBUG_REMOTE_ENABLE}
+        PHP_XDEBUG_REMOTE_HOST: ${PHP_XDEBUG_REMOTE_HOST}
+        PHP_XDEBUG_REMOTE_PORT: ${PHP_XDEBUG_REMOTE_PORT}
+        PHP_XDEBUG_REMOTE_AUTO_START: ${PHP_XDEBUG_REMOTE_AUTO_START}
+        PHP_XDEBUG_REMOTE_CONNECT_BACK: ${PHP_XDEBUG_REMOTE_CONNECT_BACK}
+        PHP_XDEBUG_IDEKEY: ${PHP_XDEBUG_IDEKEY}
+        PHP_XDEBUG_PROFILER_ENABLE: ${PHP_XDEBUG_PROFILER_ENABLE}
+        PHP_XDEBUG_PROFILER_OUTPUT_DIR: ${PHP_XDEBUG_PROFILER_OUTPUT_DIR}
+    volumes:
+      - ./src:/app
+    env_file: .env
+    working_dir: /app
+    command: /scripts/init.sh
+    depends_on:
+      - mysql
+      - elastic
+    labels:
+      - "traefik.enable=false"
+
+  mysql:
+    container_name: service_mysql
+    build:
+      context: ./
+      dockerfile: docker/mysql/Dockerfile
+    ports:
+      - "3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: service
+      MYSQL_PASSWORD: service
+      MYSQL_DATABASE: service
+    labels:
+      - "traefik.enable=false"

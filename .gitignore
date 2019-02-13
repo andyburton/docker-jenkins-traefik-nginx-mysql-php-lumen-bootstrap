@@ -1,0 +1,4 @@
+/.idea
+/.env
+/src/vendor
+/src/_ide_helper.php

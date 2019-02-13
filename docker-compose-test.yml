@@ -1,0 +1,56 @@
+version: '3.3'
+
+networks:
+  microservices:
+
+services:
+
+  nginx:
+    build:
+      context: ./
+      dockerfile: docker/nginx/test/Dockerfile
+    restart: always
+    ports:
+      - "80"
+    depends_on:
+      - php
+    networks:
+      microservices:
+        aliases:
+          - dev.microservices
+
+  php:
+    build:
+      context: ./
+      dockerfile: docker/php/test/Dockerfile
+      args:
+        APP_ENV: ${APP_ENV}
+    env_file: .env
+    working_dir: /app
+    command: /scripts/init.sh
+    ports:
+      - "9000"
+    depends_on:
+      - mysql
+      - elastic
+    networks:
+      microservices:
+        aliases:
+          - service_php
+
+  mysql:
+    build:
+      context: ./
+      dockerfile: docker/mysql/Dockerfile
+    ports:
+      - "3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: service
+      MYSQL_PASSWORD: service
+      MYSQL_DATABASE: service
+    networks:
+      microservices:
+        aliases:
+          - service_mysql
