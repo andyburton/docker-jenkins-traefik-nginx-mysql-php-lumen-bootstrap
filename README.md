@@ -55,17 +55,23 @@ You can then simply view `http://localhost:8001/api/v1/service` in a browser to 
 
 # Running Commands
 
-If you need to run commands on the container you can open a shell with `docker exec -it php sh` to access php directly.
+If you need to run commands on the container you can open a shell with `docker exec -it service_php sh` to access php directly.
 
 Alternatively you can run commands directly e.g. `docker exec -it php php artisan make:migration create_table`
 
+# Testing
+
+`docker exec -it service_php /bin/sh /scripts/unit_test.sh`
+
+`docker exec -it service_php /bin/sh /scripts/api_test.sh`
+
 # Composer Install
 
-`docker exec -it php composer install`
+`docker exec -it service_php composer install`
 
 # Artisan Migrate
 
-`docker exec -it php php artisan migrate`
+`docker exec -it service_php php artisan migrate`
 
 # Local PHP Server
 
