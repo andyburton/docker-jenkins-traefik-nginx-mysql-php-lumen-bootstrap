@@ -27,7 +27,7 @@ services:
         APP_ENV: ${APP_ENV}
     env_file: .env
     working_dir: /app
-    command: /scripts/init.sh
+    command: /bin/sh /scripts/init.sh
     ports:
       - "9000"
     depends_on:

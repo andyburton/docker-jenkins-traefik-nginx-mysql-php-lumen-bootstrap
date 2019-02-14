@@ -42,7 +42,7 @@ services:
       - ./src:/app
     env_file: .env
     working_dir: /app
-    command: /scripts/init.sh
+    command: /bin/sh /scripts/init.sh
     depends_on:
       - mysql
     labels:
